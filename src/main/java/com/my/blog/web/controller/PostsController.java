@@ -1,5 +1,6 @@
 package com.my.blog.web.controller;
 
+import com.my.blog.web.dto.PostsSaveRequestDto;
 import com.my.blog.web.service.*;
 import com.my.blog.web.dto.PostsDto;
 import io.swagger.annotations.Api;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = {"post 등록 컨트롤러"})
+@Api(tags = {"post 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/posts")
@@ -19,7 +20,7 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping
-    public PostsDto create(@RequestBody PostsDto dto)
+    public PostsDto create(@RequestBody PostsSaveRequestDto dto)
     {
         return postsService.create(dto);
     }

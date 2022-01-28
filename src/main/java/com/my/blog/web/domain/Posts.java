@@ -1,19 +1,19 @@
 package com.my.blog.web.domain;
 
+import com.my.blog.web.dto.ReplyDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Posts {
 
@@ -23,8 +23,17 @@ public class Posts {
     private String title;
     private String content;
 
-    public Posts(String title, String content) {
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
+    private List<Reply> replyList = new ArrayList<>();
+
+    private Posts(String title, String content)
+    {
         this.title = title;
         this.content = content;
+    }
+
+    public static Posts of(String title, String content)
+    {
+        return new Posts(title, content);
     }
 }

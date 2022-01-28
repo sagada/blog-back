@@ -9,7 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ReplyDto {
+    private Long replyId;
     private String content;
+
+    public ReplyDto(Reply reply)
+    {
+        this.replyId = reply.getId();
+        this.content = reply.getContent();
+    }
 
     public static Reply toEntity(ReplyDto dto)
     {

@@ -26,6 +26,7 @@ dependencies {
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     implementation group: 'com.google.guava', name: 'guava', version: '30.0-jre'
 
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

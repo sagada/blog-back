@@ -16,11 +16,12 @@ public class Reply {
 
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Posts posts;
 
-    public Reply(String content) {
+    public Reply(String content)
+    {
         this.content = content;
     }
 }
