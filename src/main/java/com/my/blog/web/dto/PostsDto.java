@@ -17,8 +17,8 @@ public class PostsDto {
     private Long postsId;
     private String title;
     private String content;
-    private String imgUrl;
     private List<ReplyDto> replyDtoList;
+
     private LocalDateTime regDt;
     private LocalDateTime chgDt;
 
@@ -33,7 +33,6 @@ public class PostsDto {
     {
         PostsDto postsDto = new PostsDto(entity.getId(), entity.getTitle(), entity.getContent());
         postsDto.setReplyDtoList(entity.getReplyList().stream().map(ReplyDto::new).collect(Collectors.toList()));
-        postsDto.setImgUrl(entity.getImgUrl());
         postsDto.setChgDt(entity.getChgDt());
         postsDto.setRegDt(entity.getRegDt());
         return postsDto;

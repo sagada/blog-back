@@ -20,18 +20,18 @@ public class Posts extends BaseTimeEntity{
     private String title;
     private String content;
     private String imgUrl;
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "posts")
     private List<Reply> replyList = new ArrayList<>();
 
-    private Posts(String title, String content, String imgUrl)
+    private Posts(String title, String content)
     {
         this.title = title;
         this.content = content;
         this.imgUrl = imgUrl;
     }
 
-    public static Posts of(String title, String content, String imgUrl)
+    public static Posts of(String title, String content)
     {
-        return new Posts(title, content, imgUrl);
+        return new Posts(title, content);
     }
 }

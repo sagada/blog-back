@@ -26,8 +26,4 @@ public class ReplyDto {
         this.parentReplyId = reply.getParentId();
     }
 
-    public static Reply toEntity(ReplyDto dto)
-    {
-        return new Reply(dto.getContent());
-    }
 }

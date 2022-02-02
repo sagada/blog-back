@@ -1,5 +1,6 @@
 package com.my.blog.web.controller;
 
+import com.my.blog.web.dto.PostUpdateRequestDto;
 import com.my.blog.web.dto.PostsSaveRequestDto;
 import com.my.blog.web.service.*;
 import com.my.blog.web.dto.PostsDto;
@@ -49,8 +50,8 @@ public class PostsController {
 
     @ApiOperation(value = "특정 ID 게시글 수정")
     @PutMapping("/{id}")
-    public PostsDto update(@RequestBody PostsDto dto)
+    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id)
     {
-        return postsService.update(dto);
+        return postsService.update(dto, id);
     }
 }
