@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"reply 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 @RequestMapping("/api/reply")
 public class ReplyController {
 
     private final ReplyService replyService;
 
-    @ApiOperation(value = "댓글 등록")
+    @ApiOperation(value = "댓글 등록", notes = "부모 댓글 없으면 parentReplyId 0번으로 보내면 됩니다.")
     @PostMapping
     public PostsDto addReply(@RequestBody ReplySaveRequestDto dto)
     {

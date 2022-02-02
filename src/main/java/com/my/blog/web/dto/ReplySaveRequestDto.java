@@ -9,4 +9,10 @@ public class ReplySaveRequestDto {
 
     private Long postsId;
     private String content;
+    private Long parentReplyId;
+
+    public Long getParentReplyId()
+    {
+        return parentReplyId == null ? null : parentReplyId;
+    }
 }

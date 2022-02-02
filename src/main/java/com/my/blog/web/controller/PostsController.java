@@ -12,6 +12,7 @@ import java.util.List;
 
 @Api(tags = {"post 컨트롤러"})
 @RestController
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/posts")
 public class PostsController {

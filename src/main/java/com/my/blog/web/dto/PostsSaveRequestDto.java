@@ -11,9 +11,10 @@ import lombok.Setter;
 public class PostsSaveRequestDto {
     private String title;
     private String content;
+    private String imgUrl;
 
     public static Posts from(PostsSaveRequestDto dto)
     {
-        return Posts.of(dto.getTitle(), dto.getContent());
+        return Posts.of(dto.getTitle(), dto.getContent(), dto.getImgUrl());
     }
 }

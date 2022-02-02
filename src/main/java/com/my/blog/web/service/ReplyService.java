@@ -26,6 +26,7 @@ public class ReplyService {
 
         Reply reply = new Reply(dto.getContent());
         reply.setPosts(posts);
+        reply.setParentId(dto.getParentReplyId());
         replyRepository.save(reply);
 
         Posts save = postsRepository.save(posts);
