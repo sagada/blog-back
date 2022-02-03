@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = {"reply 컨트롤러"})
+@Api(tags = {"댓글 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")

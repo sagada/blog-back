@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = {"post 컨트롤러"})
+@Api(tags = {"포스트 컨트롤러"})
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor

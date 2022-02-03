@@ -5,6 +5,7 @@ import com.my.blog.web.dto.response.ResponseDto;
 import com.my.blog.web.dto.response.UserDto;
 import com.my.blog.web.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"유저 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @CrossOrigin("*")
 public class UserController {
     private final UserService userService;
 
+    @ApiOperation(value = "회원 가입")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody UserDto requestDto)
     {
@@ -45,6 +47,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value = "로그인")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticate(@RequestBody UserDto userDto)
     {
