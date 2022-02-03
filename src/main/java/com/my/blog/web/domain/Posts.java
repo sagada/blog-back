@@ -17,9 +17,10 @@ public class Posts extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String content;
-    private String imgUrl;
+
     @OneToMany(mappedBy = "posts")
     private List<Reply> replyList = new ArrayList<>();
 
@@ -27,7 +28,6 @@ public class Posts extends BaseTimeEntity{
     {
         this.title = title;
         this.content = content;
-        this.imgUrl = imgUrl;
     }
 
     public static Posts of(String title, String content)

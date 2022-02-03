@@ -1,9 +1,9 @@
 package com.my.blog.web.service;
 
 import com.my.blog.web.domain.Posts;
-import com.my.blog.web.dto.PostUpdateRequestDto;
+import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.PostsDto;
-import com.my.blog.web.dto.PostsSaveRequestDto;
+import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

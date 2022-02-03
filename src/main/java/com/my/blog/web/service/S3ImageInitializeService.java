@@ -18,6 +18,7 @@ public class S3ImageInitializeService {
 
     @Value("${cloud.aws.s3.bucket}")
     public String bucket;
+
     @PostConstruct
     public void init()
     {
@@ -26,7 +27,7 @@ public class S3ImageInitializeService {
         log.info("S3 Bucket Initialize Start ...");
         for (S3ObjectSummary s3ObjectSummary : objectListing.getObjectSummaries())
         {
-            amazonS3Client.deleteObject(bucket, s3ObjectSummary.getKey().toString());
+            amazonS3Client.deleteObject(bucket, s3ObjectSummary.getKey());
         }
         log.info("S3 Bucket Initialize End ...");
 

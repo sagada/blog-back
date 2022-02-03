@@ -1,4 +1,4 @@
-package com.my.blog.web.dto;
+package com.my.blog.web.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

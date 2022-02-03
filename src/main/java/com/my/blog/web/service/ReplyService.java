@@ -3,7 +3,7 @@ package com.my.blog.web.service;
 import com.my.blog.web.domain.Posts;
 import com.my.blog.web.domain.Reply;
 import com.my.blog.web.dto.PostsDto;
-import com.my.blog.web.dto.ReplySaveRequestDto;
+import com.my.blog.web.dto.request.ReplySaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
 import com.my.blog.web.persistence.ReplyRepository;
 import lombok.RequiredArgsConstructor;

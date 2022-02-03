@@ -1,7 +1,7 @@
 package com.my.blog.web.controller;
 
-import com.my.blog.web.dto.PostUpdateRequestDto;
-import com.my.blog.web.dto.PostsSaveRequestDto;
+import com.my.blog.web.dto.request.PostUpdateRequestDto;
+import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.service.*;
 import com.my.blog.web.dto.PostsDto;
 import io.swagger.annotations.Api;

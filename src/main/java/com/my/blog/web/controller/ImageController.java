@@ -34,7 +34,7 @@ public class ImageController {
     @DeleteMapping
     public void delete()
     {
-        s3ImgDeleteService.deleteAllImg();
+        s3ImgDeleteService.deleteS3AllImage();
     }
 
     @Deprecated
