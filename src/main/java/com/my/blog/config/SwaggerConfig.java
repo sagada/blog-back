@@ -27,7 +27,8 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo("블로그", "1.0.0"));
     }
 
-    private ApiInfo apiInfo(String title, String version) {
+    private ApiInfo apiInfo(String title, String version)
+    {
         return new ApiInfo(
                 title,
                 "블로그 swagger",
@@ -35,8 +36,7 @@ public class SwaggerConfig {
                 null,
                 null,
                 "blog",
-                "www.naver.com",
-                new ArrayList<>()
-    );
+                "www.sagada.com",
+                new ArrayList<>());
     }
 }

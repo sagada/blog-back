@@ -1,6 +1,7 @@
 package com.my.blog.web.dto;
 
 import com.my.blog.web.domain.Posts;
+import com.my.blog.web.domain.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class PostsDto {
     private String title;
     private String content;
     private List<ReplyDto> replyDtoList;
+    private UserInfo userInfo;
 
     private LocalDateTime regDt;
     private LocalDateTime chgDt;
@@ -35,6 +37,8 @@ public class PostsDto {
         postsDto.setReplyDtoList(entity.getReplyList().stream().map(ReplyDto::new).collect(Collectors.toList()));
         postsDto.setChgDt(entity.getChgDt());
         postsDto.setRegDt(entity.getRegDt());
+        UserEntity userEntity = entity.getUserEntity();
+        postsDto.setUserInfo(new UserInfo(userEntity.getUsername(), userEntity.getId()));
         return postsDto;
     }
 }

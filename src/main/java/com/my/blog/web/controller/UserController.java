@@ -1,6 +1,8 @@
 package com.my.blog.web.controller;
 
 import com.my.blog.web.domain.UserEntity;
+import com.my.blog.web.dto.request.UserLoginRequestDto;
+import com.my.blog.web.dto.request.UserSaveRequestDto;
 import com.my.blog.web.dto.response.ResponseDto;
 import com.my.blog.web.dto.response.UserDto;
 import com.my.blog.web.security.TokenProvider;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"유저 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @CrossOrigin("*")
 public class UserController {
     private final UserService userService;
@@ -22,7 +24,7 @@ public class UserController {
 
     @ApiOperation(value = "회원 가입")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody UserDto requestDto)
+    public ResponseEntity<?> registerUser(@RequestBody UserSaveRequestDto requestDto)
     {
         try {
             UserEntity userEntity = UserEntity.of(
@@ -30,6 +32,9 @@ public class UserController {
                     requestDto.getEmail(),
                     requestDto.getPassword()
             );
+
+            // TODO 회원 가입 DTO
+            userEntity.nullId();
 
             UserEntity registerUser = userService.create(userEntity);
 
@@ -51,7 +56,7 @@ public class UserController {
 
     @ApiOperation(value = "로그인")
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticate(@RequestBody UserDto userDto)
+    public ResponseEntity<?> authenticate(@RequestBody UserLoginRequestDto userDto)
     {
         UserEntity userEntity = userService.getByCredentials(
                 userDto.getEmail(),

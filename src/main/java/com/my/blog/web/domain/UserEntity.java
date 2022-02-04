@@ -27,6 +27,11 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    public void nullId()
+    {
+        this.id = null;
+    }
+
     private UserEntity(String username, String email, String password)
     {
         this.username = username;

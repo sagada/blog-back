@@ -2,6 +2,7 @@ package com.my.blog.web.service;
 
 import com.my.blog.web.domain.Posts;
 import com.my.blog.web.domain.UserEntity;
+import com.my.blog.web.dto.messge.ErrorType;
 import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.PostsDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
@@ -25,11 +26,14 @@ public class PostsService {
     {
         UserEntity userEntity = userRepository.findByEmail(email);
         if (userEntity == null)
-            throw new RuntimeException("없는 유저!");
+            throw new RuntimeException(ErrorType.NONE_USER.getMessage());
 
         Posts posts = PostsSaveRequestDto.from(dto, userEntity);
         postsRepository.save(posts);
-        Posts savedPost = postsRepository.findById(posts.getId()).get();
+
+        Posts savedPost = postsRepository.findById(posts.getId())
+                .orElseThrow(() -> new RuntimeException(ErrorType.NONE_POST.getMessage())
+        );
 
         return PostsDto.from(savedPost);
     }
