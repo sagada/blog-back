@@ -3,6 +3,7 @@ package com.my.blog.web.controller;
 import com.my.blog.web.domain.UserEntity;
 import com.my.blog.web.dto.response.ResponseDto;
 import com.my.blog.web.dto.response.UserDto;
+import com.my.blog.web.security.TokenProvider;
 import com.my.blog.web.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"유저 컨트롤러"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/auth")
 @CrossOrigin("*")
 public class UserController {
     private final UserService userService;
+    private final TokenProvider tokenProvider;
 
     @ApiOperation(value = "회원 가입")
     @PostMapping("/signup")
@@ -58,8 +60,12 @@ public class UserController {
 
         if (userEntity != null)
         {
+            final String token = tokenProvider.create(userEntity);
+
             final UserDto responseUserDto = UserDto.builder()
                     .email(userEntity.getEmail())
+                    .token(token)
+                    .username(userEntity.getUsername())
                     .id(userEntity.getId())
                     .build();
 

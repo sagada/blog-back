@@ -1,10 +1,12 @@
 package com.my.blog.web.service;
 
 import com.my.blog.web.domain.Posts;
+import com.my.blog.web.domain.UserEntity;
 import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.PostsDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
+import com.my.blog.web.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +18,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostsService {
     private final PostsRepository postsRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public PostsDto create(PostsSaveRequestDto dto)
+    public PostsDto create(PostsSaveRequestDto dto, String email)
     {
-        Posts posts = PostsSaveRequestDto.from(dto);
+        UserEntity userEntity = userRepository.findByEmail(email);
+        if (userEntity == null)
+            throw new RuntimeException("없는 유저!");
+
+        Posts posts = PostsSaveRequestDto.from(dto, userEntity);
         postsRepository.save(posts);
         Posts savedPost = postsRepository.findById(posts.getId()).get();
 

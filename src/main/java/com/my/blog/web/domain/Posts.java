@@ -24,14 +24,19 @@ public class Posts extends BaseTimeEntity{
     @OneToMany(mappedBy = "posts")
     private List<Reply> replyList = new ArrayList<>();
 
-    private Posts(String title, String content)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+
+    private Posts(String title, String content, UserEntity userEntity)
     {
         this.title = title;
         this.content = content;
+        this.userEntity = userEntity;
     }
 
-    public static Posts of(String title, String content)
+    public static Posts of(String title, String content, UserEntity userEntity)
     {
-        return new Posts(title, content);
+        return new Posts(title, content, userEntity);
     }
 }
