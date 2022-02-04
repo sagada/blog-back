@@ -33,9 +33,6 @@ public class UserController {
                     requestDto.getPassword()
             );
 
-            // TODO 회원 가입 DTO
-            userEntity.nullId();
-
             UserEntity registerUser = userService.create(userEntity);
 
             UserDto userDto = UserDto.builder()
