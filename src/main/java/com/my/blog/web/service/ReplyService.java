@@ -8,6 +8,7 @@ import com.my.blog.web.dto.messge.ErrorType;
 import com.my.blog.web.dto.request.ReplySaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
 import com.my.blog.web.persistence.ReplyRepository;
+import com.my.blog.web.security.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

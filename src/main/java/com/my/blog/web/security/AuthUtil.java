@@ -1,4 +1,4 @@
-package com.my.blog.web.service;
+package com.my.blog.web.security;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;
