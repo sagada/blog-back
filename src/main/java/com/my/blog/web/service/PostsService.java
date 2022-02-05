@@ -21,8 +21,9 @@ public class PostsService {
     private final UserService userService;
 
     @Transactional
-    public PostsDto create(PostsSaveRequestDto dto, Long userId)
+    public PostsDto create(PostsSaveRequestDto dto)
     {
+        Long userId = AuthUtil.getCurrentUserId();
         UserEntity userEntity = userService.findById(userId);
 
         Posts posts = PostsSaveRequestDto.from(dto, userEntity);
@@ -50,8 +51,10 @@ public class PostsService {
         return PostsDto.from(posts);
     }
 
-    public void deleteById(Long postId, Long userId)
+    public void deleteById(Long postId)
     {
+        Long userId = AuthUtil.getCurrentUserId();
+
         Posts findPosts = postsRepository.findById(postId)
                 .orElseThrow(()-> new RuntimeException(ErrorType.NONE_POST.name()));
 
@@ -67,8 +70,10 @@ public class PostsService {
         }
     }
 
-    public PostsDto update(PostUpdateRequestDto dto, Long postId, Long userId)
+    public PostsDto update(PostUpdateRequestDto dto, Long postId)
     {
+        Long userId = AuthUtil.getCurrentUserId();
+
         Posts findPosts = postsRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("없는 ID"));
 

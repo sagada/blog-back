@@ -7,7 +7,6 @@ import com.my.blog.web.service.PostsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +22,9 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping
-    public PostsDto create(@RequestBody PostsSaveRequestDto dto, @AuthenticationPrincipal String userId)
+    public PostsDto create(@RequestBody PostsSaveRequestDto dto)
     {
-        return postsService.create(dto, Long.parseLong(userId));
+        return postsService.create(dto);
     }
 
     @ApiOperation(value = "게시글 전체 조회")
@@ -44,15 +43,15 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 ID 로 삭제")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(required = true, value = "id") Long id, @AuthenticationPrincipal String userId)
+    public void delete(@PathVariable(required = true, value = "id") Long id)
     {
-        postsService.deleteById(id,  Long.parseLong(userId));
+        postsService.deleteById(id);
     }
 
     @ApiOperation(value = "특정 ID 게시글 수정")
     @PutMapping("/{id}")
-    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id, @AuthenticationPrincipal String userId)
+    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id)
     {
-        return postsService.update(dto, id,  Long.parseLong(userId));
+        return postsService.update(dto, id);
     }
 }

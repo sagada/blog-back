@@ -15,7 +15,6 @@ public class PostsSaveRequestDto {
     private String title;
     private String content;
 
-
     public PostsSaveRequestDto(String title) {
         this.title = title;
     }
