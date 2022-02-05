@@ -27,6 +27,12 @@ public class ReplyService {
         Posts posts = postsRepository.findById(dto.getPostId())
                 .orElseThrow(() -> new RuntimeException("없는 posts 아이디 입니다."));
 
+        if (!dto.getParentReplyId().equals(0L))
+        {
+            replyRepository.findById(dto.getParentReplyId())
+                    .orElseThrow(()-> new RuntimeException("없는 부모 댓글 ID 입니다"));
+        }
+
         Long userId = AuthUtil.getCurrentUserId();
         UserEntity userEntity = userService.findById(userId);
         Reply reply = new Reply(dto.getContent());
