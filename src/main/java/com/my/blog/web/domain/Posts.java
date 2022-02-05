@@ -28,6 +28,11 @@ public class Posts extends BaseTimeEntity{
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
+    public Posts(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     private Posts(String title, String content, UserEntity userEntity)
     {
         this.title = title;

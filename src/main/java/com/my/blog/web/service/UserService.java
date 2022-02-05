@@ -37,8 +37,4 @@ public class UserService {
     {
         return userRepository.findById(userId).orElseThrow(()-> new RuntimeException(ErrorType.NONE_USER.getMessage()));
     }
-
-    public UserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
 }

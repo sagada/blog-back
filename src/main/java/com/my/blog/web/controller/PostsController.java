@@ -1,9 +1,9 @@
 package com.my.blog.web.controller;
 
+import com.my.blog.web.dto.PostsDto;
 import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
-import com.my.blog.web.service.*;
-import com.my.blog.web.dto.PostsDto;
+import com.my.blog.web.service.PostsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +23,9 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping
-    public PostsDto create(@RequestBody PostsSaveRequestDto dto,  @AuthenticationPrincipal Long userId)
+    public PostsDto create(@RequestBody PostsSaveRequestDto dto, @AuthenticationPrincipal String userId)
     {
-        return postsService.create(dto, userId);
+        return postsService.create(dto, Long.parseLong(userId));
     }
 
     @ApiOperation(value = "게시글 전체 조회")
@@ -44,15 +44,15 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 ID 로 삭제")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(required = true, value = "id") Long id, @AuthenticationPrincipal Long userId)
+    public void delete(@PathVariable(required = true, value = "id") Long id, @AuthenticationPrincipal String userId)
     {
-        postsService.deleteById(id, userId);
+        postsService.deleteById(id,  Long.parseLong(userId));
     }
 
     @ApiOperation(value = "특정 ID 게시글 수정")
     @PutMapping("/{id}")
-    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id, @AuthenticationPrincipal Long userId)
+    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id, @AuthenticationPrincipal String userId)
     {
-        return postsService.update(dto, id, userId);
+        return postsService.update(dto, id,  Long.parseLong(userId));
     }
 }
