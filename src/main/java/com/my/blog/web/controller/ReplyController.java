@@ -27,8 +27,8 @@ public class ReplyController {
 
     @ApiOperation(value = "댓글 삭제")
     @DeleteMapping("/{replyId}")
-    public void deleteReplyById(@PathVariable Long replyId, @AuthenticationPrincipal String  userId)
+    public void deleteReplyById(@PathVariable Long replyId)
     {
-        replyService.deleteById(replyId, Long.parseLong(userId));
+        replyService.deleteById(replyId);
     }
 }

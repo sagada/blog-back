@@ -40,8 +40,9 @@ public class ReplyService {
         return PostsDto.from(save);
     }
 
-    public void deleteById(Long replyId, long userId)
+    public void deleteById(Long replyId)
     {
+        long userId = AuthUtil.getCurrentUserId();
         UserEntity userEntity = userService.findById(userId);
         Reply reply = replyRepository.findById(replyId).orElseThrow(() -> new RuntimeException("없는 댓글 아이디입니다."));
         if (userEntity.getId().equals(reply.getUserEntity().getId()))
