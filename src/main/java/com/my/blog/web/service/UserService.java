@@ -37,4 +37,8 @@ public class UserService {
     {
         return userRepository.findById(userId).orElseThrow(()-> new RuntimeException(ErrorType.NONE_USER.getMessage()));
     }
+
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(()-> new RuntimeException(ErrorType.NONE_USER.getMessage()));
+    }
 }

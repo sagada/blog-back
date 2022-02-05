@@ -23,7 +23,8 @@ public class ReplyDto {
         this.content = reply.getContent();
         this.chgDt = reply.getChgDt();
         this.regDt = reply.getRegDt();
-        this.userInfo = new UserInfo(reply.getUserEntity().getUsername(), reply.getUserEntity().getId());
+        if (reply.getUserEntity() != null){
+        this.userInfo = new UserInfo(reply.getUserEntity().getUsername(), reply.getUserEntity().getId());}
         this.parentReplyId = reply.getParentId();
     }
 

@@ -22,11 +22,10 @@ public class ReplyService {
     private final UserService userService;
 
     @Transactional
-    public PostsDto addReply(ReplySaveRequestDto dto, long userId)
+    public PostsDto addReply(ReplySaveRequestDto dto, Long userId)
     {
-        Posts posts = postsRepository.findById(dto.getPostsId())
+        Posts posts = postsRepository.findById(dto.getPostId())
                 .orElseThrow(() -> new RuntimeException("없는 posts 아이디 입니다."));
-
         UserEntity user = userService.findById(userId);
 
         Reply reply = new Reply(dto.getContent());
