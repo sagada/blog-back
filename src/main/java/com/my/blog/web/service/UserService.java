@@ -1,6 +1,7 @@
 package com.my.blog.web.service;
 
 import com.my.blog.web.domain.UserEntity;
+import com.my.blog.web.dto.messge.ErrorType;
 import com.my.blog.web.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,11 @@ public class UserService {
     public UserEntity getByCredentials(final String email, final String password)
     {
         return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    public UserEntity findById(Long userId)
+    {
+        return userRepository.findById(userId).orElseThrow(()-> new RuntimeException(ErrorType.NONE_USER.getMessage()));
     }
 
 }

@@ -15,9 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * 시큐리티 관련 테스트는 통합테스트 한다.
- */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserControllerTest {
@@ -44,7 +41,7 @@ public class UserControllerTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/auth/signup")
+                                .post("/api/auth/signup")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsBytes(userDto))
                 )
@@ -54,7 +51,7 @@ public class UserControllerTest {
         // then
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/auth/signin")
+                                .post("/api/auth/signin")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsBytes(userDto))
                 ).andDo(MockMvcResultHandlers.print())
@@ -83,7 +80,7 @@ public class UserControllerTest {
         // when
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/auth/signup")
+                                .post("/api/auth/signup")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsBytes(userDto))
                 )
@@ -94,7 +91,7 @@ public class UserControllerTest {
         // then
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/auth/signin")
+                                .post("/api/auth/signin")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsBytes(userDto))
                 ).andDo(MockMvcResultHandlers.print())

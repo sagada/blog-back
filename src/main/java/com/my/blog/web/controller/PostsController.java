@@ -23,9 +23,9 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping
-    public PostsDto create(@RequestBody PostsSaveRequestDto dto, @AuthenticationPrincipal String email)
+    public PostsDto create(@RequestBody PostsSaveRequestDto dto, @AuthenticationPrincipal Long userId)
     {
-        return postsService.create(dto, email);
+        return postsService.create(dto, userId);
     }
 
     @ApiOperation(value = "게시글 전체 조회")
@@ -44,15 +44,15 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 ID 로 삭제")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(required = true, value = "id") Long id, @AuthenticationPrincipal String email)
+    public void delete(@PathVariable(required = true, value = "id") Long id, @AuthenticationPrincipal Long userId)
     {
-        postsService.deleteById(id);
+        postsService.deleteById(id, userId);
     }
 
     @ApiOperation(value = "특정 ID 게시글 수정")
     @PutMapping("/{id}")
-    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id)
+    public PostsDto update(@RequestBody PostUpdateRequestDto dto, @PathVariable(value = "id") Long id, @AuthenticationPrincipal Long userId)
     {
-        return postsService.update(dto, id);
+        return postsService.update(dto, id, userId);
     }
 }

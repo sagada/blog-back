@@ -2,12 +2,11 @@ package com.my.blog.web.service;
 
 import com.my.blog.web.domain.Posts;
 import com.my.blog.web.domain.UserEntity;
+import com.my.blog.web.dto.PostsDto;
 import com.my.blog.web.dto.messge.ErrorType;
 import com.my.blog.web.dto.request.PostUpdateRequestDto;
-import com.my.blog.web.dto.PostsDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
-import com.my.blog.web.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +18,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostsService {
     private final PostsRepository postsRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Transactional
-    public PostsDto create(PostsSaveRequestDto dto, String email)
+    public PostsDto create(PostsSaveRequestDto dto, Long userId)
     {
-        UserEntity userEntity = userRepository.findByEmail(email);
-        if (userEntity == null)
-            throw new RuntimeException(ErrorType.NONE_USER.getMessage());
+        UserEntity userEntity = userService.findById(userId);
 
         Posts posts = PostsSaveRequestDto.from(dto, userEntity);
         postsRepository.save(posts);
@@ -53,15 +50,35 @@ public class PostsService {
         return PostsDto.from(posts);
     }
 
-    public void deleteById(Long id) {
-        postsRepository.deleteById(id);
-    }
-
-    @Transactional
-    public PostsDto update(PostUpdateRequestDto dto, Long postId)
+    public void deleteById(Long postId, Long userId)
     {
         Posts findPosts = postsRepository.findById(postId)
-                .orElseThrow(()-> new RuntimeException("없는 ID"));
+                .orElseThrow(()-> new RuntimeException(ErrorType.NONE_POST.name()));
+
+        UserEntity userEntity = userService.findById(userId);
+
+        if (findPosts.getUserEntity().equals(userEntity))
+        {
+            postsRepository.delete(findPosts);
+        }
+        else
+        {
+            throw new RuntimeException(ErrorType.NONE_AUTHORITY.getMessage());
+        }
+    }
+
+    public PostsDto update(PostUpdateRequestDto dto, Long postId, Long userId)
+    {
+        Posts findPosts = postsRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("없는 ID"));
+
+        UserEntity userEntity = userService.findById(userId);
+
+        if (!findPosts.getUserEntity().equals(userEntity))
+        {
+            throw new RuntimeException(ErrorType.NONE_AUTHORITY.getMessage());
+        }
+
         findPosts.setContent(dto.getContent());
         findPosts.setTitle(dto.getTitle());
         postsRepository.save(findPosts);

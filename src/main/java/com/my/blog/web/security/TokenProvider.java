@@ -30,7 +30,7 @@ public class TokenProvider {
 
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512, key)
-                .setSubject(userEntity.getEmail())
+                .setSubject(userEntity.getId().toString())
                 .setIssuer("blog project")
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)

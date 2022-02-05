@@ -38,11 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (token != null && !token.equalsIgnoreCase("null"))
             {
                 // usderId 가져오기 위조된 경우 예외 처리
-                String email = tokenProvider.validateAndGetUserId(token);
+                String userId = tokenProvider.validateAndGetUserId(token);
 
-                log.info("Authenticated User Email : {}", email);
+                log.info("Authenticated userId : {}", userId);
                 AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        email,
+                        userId,
                         null,
                         AuthorityUtils.NO_AUTHORITIES
                 );
