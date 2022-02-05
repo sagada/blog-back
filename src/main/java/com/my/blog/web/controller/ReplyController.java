@@ -20,9 +20,9 @@ public class ReplyController {
 
     @ApiOperation(value = "댓글 등록", notes = "부모 댓글 없으면 parentReplyId 0번으로 보내면 됩니다.")
     @PostMapping
-    public PostsDto addReply(@RequestBody ReplySaveRequestDto dto, @AuthenticationPrincipal String userId)
+    public PostsDto addReply(@RequestBody ReplySaveRequestDto dto)
     {
-        return replyService.addReply(dto, Long.parseLong(userId));
+        return replyService.addReply(dto);
     }
 
     @ApiOperation(value = "댓글 삭제")
