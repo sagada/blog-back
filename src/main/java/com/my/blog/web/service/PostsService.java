@@ -8,8 +8,6 @@ import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +57,7 @@ public class PostsService {
 
         UserEntity userEntity = userService.findById(userId);
 
-        if (findPosts.getUserEntity().equals(userEntity))
+        if (findPosts.getUserEntity().getId().equals(userEntity.getId()))
         {
             postsRepository.delete(findPosts);
         }
