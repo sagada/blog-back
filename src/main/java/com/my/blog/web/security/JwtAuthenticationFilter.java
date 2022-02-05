@@ -24,7 +24,6 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final TokenProvider tokenProvider;
-
     @Override
     protected void doFilterInternal(
             HttpServletRequest request

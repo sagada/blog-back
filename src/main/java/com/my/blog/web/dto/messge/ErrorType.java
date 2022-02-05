@@ -9,7 +9,6 @@ public enum ErrorType {
     NONE_AUTHORITY("권한이 없는 유저입니다.");
     private String message;
 
-
     ErrorType(String message)
     {
         this.message = message;

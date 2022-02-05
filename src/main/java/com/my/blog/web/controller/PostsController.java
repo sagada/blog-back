@@ -23,7 +23,7 @@ public class PostsController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping
-    public PostsDto create(@RequestBody PostsSaveRequestDto dto, @AuthenticationPrincipal Long userId)
+    public PostsDto create(@RequestBody PostsSaveRequestDto dto,  @AuthenticationPrincipal Long userId)
     {
         return postsService.create(dto, userId);
     }
