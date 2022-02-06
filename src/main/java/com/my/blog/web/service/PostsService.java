@@ -7,6 +7,7 @@ import com.my.blog.web.dto.messge.ErrorType;
 import com.my.blog.web.dto.request.PostUpdateRequestDto;
 import com.my.blog.web.dto.request.PostsSaveRequestDto;
 import com.my.blog.web.persistence.PostsRepository;
+import com.my.blog.web.persistence.ReplyRepository;
 import com.my.blog.web.security.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class PostsService {
     private final PostsRepository postsRepository;
     private final UserService userService;
+    private final ReplyRepository replyRepository;
 
     @Transactional
     public PostsDto create(PostsSaveRequestDto dto)
