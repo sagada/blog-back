@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,6 +30,7 @@ public class S3ImgUploadService {
 
     public String upload(MultipartFile multipartFile, String domainName) throws IOException
     {
+        System.out.println("#!@##!@#@!#!#!#!!#");
         File uploadFile = createUploadFileOnLocal(multipartFile);
 
         if (uploadFile == null)
@@ -92,5 +95,16 @@ public class S3ImgUploadService {
         }
 
         log.info("Delete File Fail {}", targetFile);
+    }
+
+    public List<String> uploads(List<MultipartFile> multipartFileList, String posts) throws IOException
+    {
+        List<String> imageList = new ArrayList<>();
+        for (MultipartFile file : multipartFileList)
+        {
+            imageList.add(upload(file, posts));
+        }
+
+        return imageList;
     }
 }

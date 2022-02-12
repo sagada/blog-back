@@ -24,7 +24,6 @@ public class Posts extends BaseTimeEntity{
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
     private List<Reply> replyList = new ArrayList<>();
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;

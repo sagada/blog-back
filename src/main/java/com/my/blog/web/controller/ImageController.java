@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -30,6 +31,15 @@ public class ImageController {
         String imgUrl = s3ImgUploadService.upload(multipartFile, "posts");
         return ResponseEntity.ok().body(imgUrl);
     }
+
+    @ApiOperation(value = "post 이미지 리스트 등록")
+    @PostMapping("/s3/posts/upload/multi")
+    public ResponseEntity<List<String>> s3Uploads(@RequestPart List<MultipartFile> multipartFileList) throws IOException
+    {
+        List<String> list = s3ImgUploadService.uploads(multipartFileList, "posts");
+        return ResponseEntity.ok().body(list);
+    }
+
 
     @DeleteMapping
     public void delete()
