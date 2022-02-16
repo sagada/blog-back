@@ -30,7 +30,6 @@ public class S3ImgUploadService {
 
     public String upload(MultipartFile multipartFile, String domainName) throws IOException
     {
-        System.out.println("#!@##!@#@!#!#!#!!#");
         File uploadFile = createUploadFileOnLocal(multipartFile);
 
         if (uploadFile == null)

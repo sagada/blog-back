@@ -19,6 +19,7 @@ public class Posts extends BaseTimeEntity{
     private Long id;
 
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
